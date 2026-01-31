@@ -1,6 +1,16 @@
 // Provides a simple unlocking check for Feb 2026 days and helpers to reveal egg badges
 // Default to locked mode; set window.DEBUG_UNLOCK_ALL = true in the console to override for testing
-if (typeof window.DEBUG_UNLOCK_ALL === 'undefined') window.DEBUG_UNLOCK_ALL = false;
+// Read persisted dev override from sessionStorage when available
+(function(){
+    try {
+        const s = sessionStorage.getItem('DEBUG_UNLOCK_ALL');
+        if (s === '1') window.DEBUG_UNLOCK_ALL = true;
+        else if (s === '0') window.DEBUG_UNLOCK_ALL = false;
+        else if (typeof window.DEBUG_UNLOCK_ALL === 'undefined') window.DEBUG_UNLOCK_ALL = false;
+    } catch (e) {
+        if (typeof window.DEBUG_UNLOCK_ALL === 'undefined') window.DEBUG_UNLOCK_ALL = false;
+    }
+})();
 
 window.isDayUnlockedForEgg = function(dayNumber) {
     // Honor global debug override for testing

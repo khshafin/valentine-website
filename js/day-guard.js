@@ -32,6 +32,13 @@
     }
 
     window.ensureDayUnlocked = function(dayNumber){
+        // Respect persisted debug override (sessionStorage) when present
+        try{
+            const s = sessionStorage.getItem('DEBUG_UNLOCK_ALL');
+            if (s === '1') { window.DEBUG_UNLOCK_ALL = true; }
+            else if (s === '0') { window.DEBUG_UNLOCK_ALL = false; }
+        }catch(e){}
+
         // If debug mode is enabled, allow access
         if (window.DEBUG_UNLOCK_ALL) return true;
 

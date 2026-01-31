@@ -75,6 +75,8 @@ function createCalendar() {
 // Allow toggling debug unlock mode programmatically and refresh calendar
 window.setDebugUnlockAll = function(val) {
     window.DEBUG_UNLOCK_ALL = !!val;
+    // persist developer override in session so navigation keeps state during local testing
+    try { sessionStorage.setItem('DEBUG_UNLOCK_ALL', window.DEBUG_UNLOCK_ALL ? '1' : '0'); } catch(e) {}
     // refresh any UI that depends on unlock state
     createCalendar();
     // refresh per-page egg visibility when possible
