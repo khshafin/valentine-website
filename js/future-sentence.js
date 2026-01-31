@@ -43,7 +43,6 @@
                 <text x='90' y='140' class='title'>${title}</text>
                 ${subtitle ? `<text x='90' y='180' class='meta'>${subtitle}</text>` : ''}
                 ${svgLines}
-                <text x='90' y='520' class='meta'>— Forever yours, Shafin</text>
             </svg>
         `;
         return svg;
@@ -73,7 +72,6 @@
 
     document.addEventListener('DOMContentLoaded', function(){
         const form = qs('#fsForm');
-        const printBtn = qs('#fsPrint');
         const dlBtn = qs('#fsDownload');
         const editBtn = qs('#fsEdit');
         const resetBtn = qs('#resetFs');
@@ -84,11 +82,7 @@
             qs('#fsTitle').textContent = `Day ${dayParam} — One Sentence For Us`;
             backToDay.href = `day${dayParam}.html`;
             backToDay.textContent = `Back to Day ${dayParam}`;
-            const bottomBack = qs('#fsBottomBack');
-            if(bottomBack){
-                bottomBack.href = `day${dayParam}.html`;
-                bottomBack.textContent = `Back to Day ${dayParam}`;
-            }
+
         } else {
             backToDay.href = 'bouquet.html';
             backToDay.textContent = 'Back';
@@ -102,18 +96,7 @@
             showResult(svg);
         });
 
-        printBtn && printBtn.addEventListener('click', function(){
-            const svg = qs('#fsCardContainer').innerHTML;
-            const w = window.open('', '_blank');
-            w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Print Card</title>');
-            w.document.write('<style>body{margin:0;background:#FBF5DE;font-family:Georgia, serif}.card{max-width:1200px;margin:20px auto;}</style>');
-            w.document.write('</head><body>');
-            w.document.write('<div class="card">' + svg + '</div>');
-            w.document.write('</body></html>');
-            w.document.close();
-            w.focus();
-            setTimeout(()=>{ w.print(); }, 300);
-        });
+
 
         dlBtn && dlBtn.addEventListener('click', function(){
             const svg = qs('#fsCardContainer').innerHTML;
