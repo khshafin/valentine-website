@@ -1,6 +1,6 @@
 // Provides a simple unlocking check for Feb 2026 days and helpers to reveal egg badges
-// Default to debug unlock if not defined (useful when testing from pages that don't include calendar.js)
-if (typeof window.DEBUG_UNLOCK_ALL === 'undefined') window.DEBUG_UNLOCK_ALL = true;
+// Default to locked mode; set window.DEBUG_UNLOCK_ALL = true in the console to override for testing
+if (typeof window.DEBUG_UNLOCK_ALL === 'undefined') window.DEBUG_UNLOCK_ALL = false;
 
 window.isDayUnlockedForEgg = function(dayNumber) {
     // Honor global debug override for testing

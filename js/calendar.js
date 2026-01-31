@@ -17,7 +17,9 @@ const DAYS_DATA = [
 ];
 
 // DEBUG: set to true to unlock all days for development/testing
-window.DEBUG_UNLOCK_ALL = true;
+// Default to false in production so days open only on/after their date.
+// You can enable it in the console for testing: `window.DEBUG_UNLOCK_ALL = true`.
+window.DEBUG_UNLOCK_ALL = false;
 
 // Check if a day is unlocked
 function isDayUnlocked(dayData) {

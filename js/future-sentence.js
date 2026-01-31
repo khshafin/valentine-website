@@ -94,6 +94,11 @@
         const backToDay = qs('#backToDay');
         const dayParam = readQueryParam('day');
 
+        // Enforce day guard if opened directly with a day param
+        if (dayParam && typeof ensureDayUnlocked === 'function') {
+            ensureDayUnlocked(Number(dayParam));
+        }
+
         if(dayParam){
             qs('#fsTitle').textContent = `Day ${dayParam} — One Sentence For Us`;
             backToDay.href = `day${dayParam}.html`;

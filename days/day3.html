@@ -56,9 +56,11 @@
         });
     </script>
     <script src="../js/egg-visibility.js"></script>
+    <script src="../js/day-guard.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function(){
             revealEggIfUnlocked(3, '.egg-letter-day');
+            ensureDayUnlocked(3);
         });
     </script>
 </body>
