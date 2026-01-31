@@ -53,7 +53,8 @@
     function showResult(svg){
         const container = qs('#fsCardContainer');
         container.innerHTML = svg;
-        qs('#fsResult').style.display = 'block';
+        const result = qs('#fsResult');
+        result.style.display = 'block';
         qs('#fsForm').style.display = 'none';
         // Hide form-level back to avoid duplicate Back buttons
         const formBack = qs('#fsFormBack');
@@ -62,6 +63,12 @@
         document.body.classList.add('fs-result-visible');
         // Ensure card is visible in viewport
         container.scrollIntoView({behavior: 'smooth', block: 'center'});
+
+        // trigger entrance animations (replay safe)
+        result.classList.remove('fs-animate');
+        // force reflow to restart animation
+        void result.offsetWidth;
+        setTimeout(()=> result.classList.add('fs-animate'), 40);
     }
 
     function svgToPngDownload(svgString, filename){
@@ -121,6 +128,8 @@
             // restore form back link and page decorations
             const formBack = qs('#fsFormBack'); if(formBack) formBack.style.display = '';
             document.body.classList.remove('fs-result-visible');
+            // stop animations so they can replay next time
+            const result = qs('#fsResult'); if(result) result.classList.remove('fs-animate');
         });
 
         resetBtn && resetBtn.addEventListener('click', function(){ form.reset(); });
