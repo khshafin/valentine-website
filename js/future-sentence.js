@@ -23,26 +23,28 @@
 
         const lines = wrap(clean, 45);
 
-        const svgLines = lines.map((l,i) => `<text class='sentence' x='90' y='${220 + i*50}'>${l}</text>`).join('\n');
+        const svgLines = lines.map((l,i) => `<text class='sentence' x='600' text-anchor='middle' y='${240 + i*48}'>${l}</text>`).join('\n');
 
         const svg = `
-            <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600' preserveAspectRatio='xMidYMid meet'>
                 <defs>
                     <style>
                         <![CDATA[
                         .bg{fill:#FBF5DE}
                         .card{fill:#fff;stroke:#EAC8A6;stroke-width:6}
-                        .title{font-family:Georgia, serif; font-size:30px; fill:#8B7355}
+                        .title{font-family:Georgia, serif; font-size:36px; fill:#8B7355; font-weight:600}
                         .sentence{font-family:Georgia, serif; font-size:28px; fill:#6B5B4A}
                         .meta{font-family:Georgia, serif; font-size:18px; fill:#8B7355}
+                        .heart{fill:#FFB6C1}
                         ]]>
                     </style>
                 </defs>
                 <rect class='bg' width='100%' height='100%'></rect>
-                <rect class='card' x='60' y='60' width='1080' height='480' rx='6' ry='6'></rect>
-                <text x='90' y='140' class='title'>${title}</text>
-                ${subtitle ? `<text x='90' y='180' class='meta'>${subtitle}</text>` : ''}
+                <rect class='card' x='60' y='60' width='1080' height='480' rx='10' ry='10'></rect>
+                <text x='600' text-anchor='middle' y='140' class='title'>${title}</text>
+                ${subtitle ? `<text x='600' text-anchor='middle' y='185' class='meta'>${subtitle}</text>` : ''}
                 ${svgLines}
+                <text x='1100' y='120' class='heart' font-size='36'>❤</text>
             </svg>
         `;
         return svg;
@@ -83,6 +85,9 @@
             backToDay.href = `day${dayParam}.html`;
             backToDay.textContent = `Back to Day ${dayParam}`;
 
+            // form-level back link
+            const formBack = qs('#fsFormBack');
+            if(formBack){ formBack.href = `day${dayParam}.html`; formBack.textContent = `Back to Day ${dayParam}`; }
         } else {
             backToDay.href = 'bouquet.html';
             backToDay.textContent = 'Back';

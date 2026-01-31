@@ -11,6 +11,7 @@
         <div class="day-header">
             <h2 id="fsTitle">One Sentence For The Future Us</h2>
             <p class="subtitle">Write one sentence and download the card.</p>
+            <a id="fsFormBack" class="back-button" href="bouquet.html" style="margin-top:8px; display:inline-block;">Back</a>
         </div>
 
         <div class="future-area">
@@ -24,12 +25,15 @@
             </form>
 
             <div id="fsResult" style="display:none; margin-top:18px;">
+                <div style="text-align:left; margin-bottom:8px;">
+                    <a id="backToDay" class="back-button" href="#">Back to Day</a>
+                </div>
+
                 <div class="future-card" id="fsCardContainer" aria-live="polite"></div>
 
                 <div style="margin-top:12px; text-align:center;">
                     <button id="fsDownload" class="special-button">Download PNG</button>
                     <button id="fsEdit" class="back-button">Edit</button>
-                    <a id="backToDay" class="back-button" href="#">Back to Day</a>
                 </div>
             </div>
         </div>
