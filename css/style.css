@@ -810,6 +810,18 @@ body .day-page .day-content > .image-container:first-of-type {
     /* intentionally no heartbeat to remain subtle */
 }
 
+/* Future sentence styles */
+.future-area { max-width: 720px; margin: 0 auto; }
+.future-form { display: grid; gap: 8px; text-align: left; margin-top: 8px; }
+.future-form label { font-size: 0.95rem; color: var(--brown); }
+.future-card { width: 100%; max-width: 740px; margin: 0 auto; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
+
+@media print {
+    body{background:#fff}
+    .back-button, .special-button, .future-form, .subtitle { display:none !important }
+    .future-card svg { width:100% !important; height:auto !important }
+}
+
 /* Easter stage layout */
 .easter-stage {
     margin-top: 18px;
