@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 - February 10</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="day-page">
+        <div class="day-content">
+            <div class="day-header">
+                <h2>Day 10</h2>
+                <p class="subtitle">February 10, 2025</p>
+            </div>
+            
+            <div class="image-container">
+                <img src="../images/day10.jpg" alt="Day 10 Memory" onerror="this.src='https://via.placeholder.com/800x500/3D74B6/FBF5DE?text=Add+Your+Photo+Here'">
+            </div>
+            
+            <div class="shayari">
+                Tumhare bina sehra sa viraan lagta hai,<br>
+                Tumhare saath jannat-e-haseen mehsoos hoti hai,<br>
+                Tumhari mohabbat mein jo sukoon-e-azeem hai,<br>
+                Woh kahin aur se kabhi nasib nahi hoti hai।
+            </div>
+            
+            <a href="../index.html" class="back-button">← Back to Calendar</a>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="../songs/day10.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.3;
+            
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+    </script>
+</body>
+</html>

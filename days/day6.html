@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6 - February 6</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="day-page">
+        <div class="day-content">
+            <div class="day-header">
+                <h2>Day 6</h2>
+                <p class="subtitle">February 6, 2025</p>
+            </div>
+            
+            <div class="image-container">
+                <img src="../images/day6.jpg" alt="Day 6 Memory" onerror="this.src='https://via.placeholder.com/800x500/3D74B6/FBF5DE?text=Add+Your+Photo+Here'">
+            </div>
+            
+            <div class="shayari">
+                Jab se tumse mulaqaat hui hai,<br>
+                Hayaat mein naye rang bhar gaye hain,<br>
+                Tumhari mohabbat ka asar kuch aisa hai,<br>
+                Har subah-o-shaam mere liye khubsurat ho gaye hain।
+            </div>
+            
+            <a href="../index.html" class="back-button">← Back to Calendar</a>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="../songs/day6.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.3;
+            
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Pixel Bouquet</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="bouquet-page">
+        <div class="bouquet-container">
+            <h2 class="bouquet-title">A Bouquet Made From Our Memories</h2>
+            <p class="subtitle" style="margin-bottom: 30px;">Each flower carries the colors of our 14 days together</p>
+            
+            <canvas id="pixelBouquet" width="600" height="700"></canvas>
+            
+            <br><br>
+            
+            <a href="letter.html" class="special-button">Words From My Heart</a>
+            
+            <br><br>
+            
+            <a href="day14.html" class="back-button">← Back</a>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('pixelBouquet');
+        const ctx = canvas.getContext('2d');
+        
+        // Color palette from the website plus some variations
+        const colors = [
+            '#3D74B6', '#FBF5DE', '#EAC8A6', '#DC3C22', // Original palette
+            '#5B8FD1', '#FFE4C4', '#D4A574', '#FF5733', // Lighter/darker variations
+            '#1E4D7B', '#F5E6D3', '#C9A88A', '#A82810', // More variations
+            '#87CEEB', '#FFB6C1', '#FF69B4', '#FF1493'  // Additional romantic colors
+        ];
+        
+        // Pixel size
+        const pixelSize = 6;
+        
+        // Function to draw a pixel
+        function drawPixel(x, y, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+        }
+        
+        // Function to draw a flower
+        function drawFlower(centerX, centerY, petalColor, centerColor) {
+            // Flower center
+            for (let dy = -2; dy <= 2; dy++) {
+                for (let dx = -2; dx <= 2; dx++) {
+                    if (dx * dx + dy * dy <= 4) {
+                        drawPixel(centerX + dx, centerY + dy, centerColor);
+                    }
+                }
+            }
+            
+            // Petals (8 petals around the center)
+            const petalPositions = [
+                [0, -5], [4, -3], [5, 0], [4, 3], [0, 5], [-4, 3], [-5, 0], [-4, -3]
+            ];
+            
+            petalPositions.forEach(([dx, dy]) => {
+                for (let pdy = -2; pdy <= 2; pdy++) {
+                    for (let pdx = -2; pdx <= 2; pdx++) {
+                        if (pdx * pdx + pdy * pdy <= 4) {
+                            drawPixel(centerX + dx + pdx, centerY + dy + pdy, petalColor);
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Function to draw a stem
+        function drawStem(x, startY, endY) {
+            const stemColor = '#2D5016';
+            for (let y = startY; y < endY; y++) {
+                drawPixel(x, y, stemColor);
+                drawPixel(x + 1, y, stemColor);
+            }
+            
+            // Add a leaf
+            const leafY = Math.floor((startY + endY) / 2);
+            for (let ly = 0; ly < 4; ly++) {
+                for (let lx = 0; lx < 3; lx++) {
+                    drawPixel(x + 2 + lx, leafY + ly, stemColor);
+                }
+            }
+        }
+        
+        // Draw background
+        ctx.fillStyle = '#FBF5DE';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw vase at the bottom
+        const vaseColor = '#3D74B6';
+        for (let y = 95; y < 110; y++) {
+            const width = 15 + (y - 95) * 0.5;
+            for (let x = 50 - width / 2; x < 50 + width / 2; x++) {
+                drawPixel(x, y, vaseColor);
+            }
+        }
+        
+        // Draw 14 flowers arranged in a bouquet
+        const flowerPositions = [
+            // Bottom row
+            { x: 35, y: 80, petal: colors[0], center: colors[13] },
+            { x: 50, y: 85, petal: colors[1], center: colors[12] },
+            { x: 65, y: 80, petal: colors[2], center: colors[11] },
+            
+            // Second row
+            { x: 30, y: 65, petal: colors[3], center: colors[10] },
+            { x: 45, y: 68, petal: colors[4], center: colors[9] },
+            { x: 55, y: 70, petal: colors[5], center: colors[8] },
+            { x: 70, y: 65, petal: colors[6], center: colors[7] },
+            
+            // Third row
+            { x: 35, y: 50, petal: colors[7], center: colors[6] },
+            { x: 50, y: 52, petal: colors[8], center: colors[5] },
+            { x: 65, y: 50, petal: colors[9], center: colors[4] },
+            
+            // Top row
+            { x: 40, y: 35, petal: colors[10], center: colors[3] },
+            { x: 50, y: 37, petal: colors[11], center: colors[2] },
+            { x: 60, y: 35, petal: colors[12], center: colors[1] },
+            
+            // Crown flower
+            { x: 50, y: 20, petal: colors[13], center: colors[0] }
+        ];
+        
+        // Draw stems first (so flowers appear on top)
+        flowerPositions.forEach(flower => {
+            drawStem(flower.x, flower.y + 8, 95);
+        });
+        
+        // Draw flowers
+        flowerPositions.forEach(flower => {
+            drawFlower(flower.x, flower.y, flower.petal, flower.center);
+        });
+        
+        // Add a ribbon on the vase
+        const ribbonColor = '#DC3C22';
+        for (let y = 92; y < 96; y++) {
+            for (let x = 35; x < 65; x++) {
+                drawPixel(x, y, ribbonColor);
+            }
+        }
+        
+        // Add bow
+        for (let y = 88; y < 92; y++) {
+            for (let x = 45; x < 55; x++) {
+                if (Math.abs(x - 50) > 1) {
+                    drawPixel(x, y, ribbonColor);
+                }
+            }
+        }
+    </script>
+    
+    <audio id="bgMusic" loop>
+        <source src="../songs/day14.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        const MUSIC_KEY = 'valentine_music_state';
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.3;
+            
+            // Restore audio state if exists
+            const savedState = sessionStorage.getItem(MUSIC_KEY);
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                audio.currentTime = state.time || 0;
+            }
+            
+            audio.play().catch(() => {
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+        
+        // Save audio state before leaving the page
+        window.addEventListener('beforeunload', () => {
+            const audio = document.getElementById('bgMusic');
+            if (audio && !audio.paused) {
+                sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                    time: audio.currentTime,
+                    playing: true
+                }));
+            }
+        });
+        
+        // Also save state when clicking links
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                const audio = document.getElementById('bgMusic');
+                if (audio && !audio.paused) {
+                    sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                        time: audio.currentTime,
+                        playing: true
+                    }));
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1228 @@
+@font-face {
+    font-family: 'NCL Gasdrifo';
+    src: url('../fonts/NCLGasdrifo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --primary-blue: #3D74B6;
+    --cream: #FBF5DE;
+    --peach: #EAC8A6;
+    --red: #DC3C22;
+    --olive: #8B7355;
+    --sage: #A8B5A0;
+    --paper: #F5F1E8;
+    --brown: #6B5B4A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'NCL Gasdrifo', 'Georgia', serif;
+    background: var(--paper);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Paper texture for landing page */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Entrance Overlay */
+.entrance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.entrance-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 115, 85, 0.02) 2px, rgba(139, 115, 85, 0.02) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 115, 85, 0.02) 2px, rgba(139, 115, 85, 0.02) 4px);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.entrance-content {
+    text-align: center;
+    padding: 60px 40px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(139, 115, 85, 0.1);
+    border: 1px solid rgba(234, 200, 166, 0.3);
+    transform: rotate(-0.5deg);
+    position: relative;
+    max-width: 500px;
+}
+
+.entrance-content h2 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    color: var(--olive);
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.entrance-content p {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    color: var(--brown);
+    font-style: italic;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.enter-button {
+    display: inline-block;
+    padding: 12px 40px;
+    background: var(--red);
+    color: var(--paper);
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(220, 60, 34, 0.25);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.enter-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+}
+
+.enter-button:hover::before {
+    left: 100%;
+}
+
+.enter-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(220, 60, 34, 0.35);
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Subtle vintage corner decoration for main container */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at top left, rgba(168, 181, 160, 0.08) 0%, transparent 70%);
+    border-radius: 0 0 100% 0;
+    pointer-events: none;
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at bottom right, rgba(168, 181, 160, 0.08) 0%, transparent 70%);
+    border-radius: 100% 0 0 0;
+    pointer-events: none;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* Decorative corner flowers for header */
+header::before {
+    content: '✿';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 2.5rem;
+    color: var(--sage);
+    opacity: 0.25;
+    transform: rotate(-20deg);
+}
+
+header::after {
+    content: '❀';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: var(--sage);
+    opacity: 0.25;
+    transform: rotate(20deg);
+}
+
+header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 3.5rem;
+    color: var(--olive);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(139, 115, 85, 0.1);
+}
+
+.subtitle {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    color: var(--brown);
+    font-style: italic;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+/* Decorative underline for landing page subtitle */
+header .subtitle::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--olive), transparent);
+    margin: 12px auto 0;
+    opacity: 0.5;
+}
+
+/* Day page specific subtitle */
+.day-header .subtitle {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    color: var(--olive);
+    font-style: normal;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Subtle scrapbook page background */
+.calendar-grid::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px rgba(139, 115, 85, 0.05);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.day-card {
+    background: #fff;
+    border-radius: 3px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(139, 115, 85, 0.15);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.day-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 115, 85, 0.08), transparent);
+    transition: left 0.5s ease;
+}
+
+.day-card:hover::before {
+    left: 100%;
+}
+
+/* Paper layers effect - creates depth on regular cards */
+.day-card:not(.special)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    box-shadow: 
+        0 0 0 1px rgba(139, 115, 85, 0.05) inset,
+        0 1px 0 rgba(255, 255, 255, 0.8) inset;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Keep day number above the overlay */
+.day-card .day-number,
+.day-card .day-label,
+.day-card .lock-icon {
+    position: relative;
+    z-index: 2;
+}
+
+.day-card.unlocked {
+    border-color: var(--olive);
+    box-shadow: 
+        0 6px 16px rgba(139, 115, 85, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.day-card.unlocked:hover {
+    transform: translateY(-5px) rotate(-1deg);
+    box-shadow: 
+        0 10px 25px rgba(139, 115, 85, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day-card.locked {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: rgba(245, 241, 232, 0.5);
+    filter: grayscale(0.3);
+}
+
+.day-card.locked .day-number,
+.day-card.locked .day-label {
+    color: var(--brown);
+    opacity: 0.5;
+}
+
+.day-card.special {
+    border-color: var(--red);
+    background: #fff;
+    position: relative;
+}
+
+.day-card.special::after {
+    content: '♥';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: var(--red);
+    opacity: 0.2;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.day-card.special.unlocked:hover {
+    box-shadow: 
+        0 10px 25px rgba(220, 60, 34, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day-number {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--olive);
+    margin-bottom: 10px;
+}
+
+.day-card.special .day-number {
+    color: var(--red);
+}
+
+.day-label {
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    color: var(--brown);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.lock-icon {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: var(--brown);
+    opacity: 0.4;
+}
+
+.heart-decoration {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    opacity: 0.15;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart-decoration svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Day Page Styles - Scrapbook Aesthetic */
+.day-page {
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Paper texture overlay */
+.day-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.day-content {
+    max-width: 700px;
+    width: 100%;
+    background: transparent;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.day-header {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.day-header h2 {
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    color: var(--olive);
+    margin-bottom: 5px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(139, 115, 85, 0.1);
+}
+
+/* Vintage stain effect */
+.day-page::after {
+    content: '';
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(139, 115, 85, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Polaroid Container */
+.image-container {
+    margin: 8px auto;
+    width: fit-content;
+    max-width: 450px;
+    position: relative;
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+    transform: rotate(0deg) translateY(-5px);
+}
+
+/* Polaroid frame */
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -50px;
+    background: #fff;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    z-index: -1;
+    border-radius: 2px;
+}
+
+/* Washi tape decoration */
+.image-container::after {
+    content: '';
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 22px;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(168, 181, 160, 0.6),
+        rgba(168, 181, 160, 0.6) 10px,
+        rgba(168, 181, 160, 0.4) 10px,
+        rgba(168, 181, 160, 0.4) 20px
+    );
+    border-left: 2px solid rgba(168, 181, 160, 0.3);
+    border-right: 2px solid rgba(168, 181, 160, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.image-container img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+/* Botanical decoration - top left */
+.day-content::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, transparent 30%, var(--sage) 31%, var(--sage) 35%, transparent 36%);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+/* Botanical decoration - bottom right */
+.day-content::after {
+    content: '';
+    position: absolute;
+    bottom: 60px;
+    right: 30px;
+    width: 100px;
+    height: 60px;
+    background: 
+        radial-gradient(ellipse at 20% 50%, var(--sage) 25%, transparent 26%),
+        radial-gradient(ellipse at 50% 50%, var(--sage) 20%, transparent 21%),
+        radial-gradient(ellipse at 80% 50%, var(--sage) 25%, transparent 26%);
+    opacity: 0.25;
+    transform: rotate(-15deg);
+    z-index: 0;
+}
+
+.shayari {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--brown);
+    font-style: italic;
+    margin: 10px auto;
+    padding: 15px 25px;
+    background: rgba(245, 241, 232, 0.8);
+    border-radius: 3px;
+    position: relative;
+    max-width: 450px;
+    box-shadow: 
+        0 3px 10px rgba(0, 0, 0, 0.08),
+        inset 0 0 0 1px rgba(139, 115, 85, 0.1);
+    transform: rotate(0.5deg);
+}
+
+/* Torn paper effect at top */
+.shayari::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(45deg, transparent 33.33%, var(--paper) 33.33%, var(--paper) 66.66%, transparent 66.66%),
+                linear-gradient(-45deg, transparent 33.33%, var(--paper) 33.33%, var(--paper) 66.66%, transparent 66.66%);
+    background-size: 8px 16px;
+    background-position: 0 -8px;
+}
+
+/* Small flower accent */
+.shayari::after {
+    content: '✿';
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--sage);
+    opacity: 0.4;
+}
+
+.special-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 30px;
+    background: var(--red);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(220, 60, 34, 0.5);
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(220, 60, 34, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+}
+
+.special-button:hover::before {
+    left: 100%;
+}
+
+.special-button:hover {
+    transform: translateY(-3px) rotate(-0.5deg);
+    box-shadow: 0 8px 20px rgba(220, 60, 34, 0.35);
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 25px;
+    background: var(--olive);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
+    border: 1px solid rgba(139, 115, 85, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+}
+
+.back-button:hover::before {
+    left: 100%;
+}
+
+.back-button:hover {
+    background: var(--brown);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 115, 85, 0.3);
+}
+
+/* Corner decorations - top corners */
+
+/* Decorative corner elements */
+.image-container {
+    isolation: isolate;
+}
+
+/* Secondary tape piece - left corner */
+.day-content {
+    position: relative;
+}
+
+.day-content .image-container {
+    position: relative;
+}
+
+/* Left corner tape */
+.image-container .image-container {
+    position: static;
+}
+
+/* Create container for extra tape */
+body .day-page .day-content > .image-container:first-of-type {
+    margin-top: 50px;
+}
+
+/* Add small corner flower - top right of polaroid */
+.day-header::before {
+    content: '❀';
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--sage);
+    opacity: 0.3;
+    transform: rotate(15deg);
+}
+
+/* Additional tape on bottom left corner of polaroid */
+.day-page .image-container {
+    position: relative;
+}
+
+.day-page .image-container img::after {
+    content: '';
+    position: absolute;
+    bottom: -45px;
+    left: -15px;
+    width: 70px;
+    height: 20px;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(234, 200, 166, 0.5),
+        rgba(234, 200, 166, 0.5) 8px,
+        rgba(234, 200, 166, 0.3) 8px,
+        rgba(234, 200, 166, 0.3) 16px
+    );
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    transform: rotate(-5deg);
+    z-index: 3;
+}
+
+/* Add decorative line under date */
+.day-header .subtitle::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--olive), transparent);
+    margin: 10px auto 0;
+    opacity: 0.4;
+}
+
+/* Small pressed flower effect near shayari */
+.back-button::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, var(--sage) 30%, transparent 31%);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Paper clip decoration - top right corner */
+.day-page .day-content {
+    position: relative;
+}
+
+.day-page .day-content > *:first-child::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 50px;
+    width: 25px;
+    height: 50px;
+    border: 3px solid rgba(139, 115, 85, 0.3);
+    border-radius: 15px 15px 5px 5px;
+    box-shadow: 
+        inset -2px 2px 4px rgba(0, 0, 0, 0.1),
+        2px 2px 6px rgba(0, 0, 0, 0.08);
+    transform: rotate(10deg);
+    z-index: 5;
+}
+
+/* Subtle corner fold effect */
+.image-container::before {
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 3px;
+}
+
+/* Handwriting-style note effect on polaroid bottom */
+.image-container img {
+    border-bottom: 35px solid #fff;
+}
+
+/* Bouquet Page Styles */
+.bouquet-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: var(--paper);
+    position: relative;
+}
+
+/* Paper texture for bouquet page */
+.bouquet-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.bouquet-container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Decorative flowers around title */
+.bouquet-container::before {
+    content: '✿ ❀ ✿';
+    display: block;
+    font-size: 2rem;
+    color: var(--sage);
+    opacity: 0.3;
+    margin-bottom: 20px;
+    letter-spacing: 20px;
+}
+
+.bouquet-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    color: var(--olive);
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(139, 115, 85, 0.1);
+}
+
+.bouquet-container .subtitle {
+    margin-bottom: 30px;
+    color: var(--brown);
+}
+
+/* Canvas frame like a pinned artwork */
+#pixelBouquet {
+    margin: 30px auto;
+    border-radius: 2px;
+    box-shadow: 
+        0 0 0 15px #fff,
+        0 0 0 16px rgba(139, 115, 85, 0.2),
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        0 3px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s ease;
+}
+
+#pixelBouquet:hover {
+    transform: rotate(0deg) translateY(-3px);
+}
+
+/* Letter Page Styles */
+.letter-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: var(--paper);
+    position: relative;
+}
+
+/* Paper texture for letter page */
+.letter-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 115, 85, 0.03) 2px, rgba(139, 115, 85, 0.03) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.letter-container {
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    padding: 60px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.12),
+        0 3px 8px rgba(0, 0, 0, 0.08),
+        inset 0 0 0 1px rgba(139, 115, 85, 0.1);
+    border: 1px solid rgba(234, 200, 166, 0.3);
+    position: relative;
+    z-index: 1;
+    transform: rotate(-0.3deg);
+    text-align: center;
+}
+
+/* Vintage stamp decoration */
+.letter-container::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--red);
+    border-radius: 5px;
+    opacity: 0.15;
+    transform: rotate(12deg);
+}
+
+/* Small flower decoration */
+.letter-container::after {
+    content: '✿';
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    font-size: 2.5rem;
+    color: var(--sage);
+    opacity: 0.2;
+    transform: rotate(-15deg);
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(234, 200, 166, 0.5);
+    position: relative;
+}
+
+/* Decorative line under header */
+.letter-header::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--peach), transparent);
+}
+
+.letter-header h2 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    color: var(--red);
+    margin-bottom: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.letter-header .subtitle {
+    color: var(--brown);
+    font-size: 1.1rem;
+}
+
+.letter-content {
+    font-family: 'Georgia', serif;
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--brown);
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.letter-content p {
+    margin-bottom: 20px;
+    text-indent: 2em;
+}
+
+.letter-content p:first-child {
+    margin-top: 10px;
+}
+
+.letter-signature {
+    text-align: right;
+    font-size: 1.4rem;
+    color: var(--olive);
+    font-style: italic;
+    margin-top: 40px;
+    font-family: 'Georgia', serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+    
+    header::before,
+    header::after {
+        font-size: 2rem;
+        top: -5px;
+    }
+    
+    header::before {
+        left: 10px;
+    }
+    
+    header::after {
+        right: 10px;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .day-card {
+        padding: 25px 15px;
+    }
+    
+    .day-number {
+        font-size: 2rem;
+    }
+    
+    .day-label {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    
+    .day-page {
+        max-height: none;
+        overflow: auto;
+    }
+    
+    .day-content {
+        padding: 30px 15px;
+    }
+    
+    .day-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .image-container {
+        max-width: 90%;
+        transform: rotate(-0.5deg);
+    }
+    
+    .image-container:hover {
+        transform: rotate(0deg) translateY(-5px);
+    }
+    
+    .image-container::before {
+        top: -12px;
+        left: -12px;
+        right: -12px;
+        bottom: -40px;
+    }
+    
+    .image-container::after {
+        width: 90px;
+        height: 18px;
+        top: -23px;
+    }
+    
+    .shayari {
+        font-size: 1.1rem;
+        padding: 25px 20px;
+        margin: 40px auto 25px;
+    }
+    
+    .day-content::before,
+    .day-content::after {
+        display: none;
+    }
+    
+    .bouquet-title {
+        font-size: 2rem;
+    }
+    
+    .bouquet-container::before {
+        font-size: 1.5rem;
+        letter-spacing: 15px;
+        margin-bottom: 15px;
+    }
+    
+    #pixelBouquet {
+        width: 90% !important;
+        height: auto !important;
+    }
+    
+    .letter-container {
+        padding: 40px 25px;
+        transform: rotate(0deg);
+    }
+    
+    .letter-container::before {
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .letter-container::after {
+        bottom: 20px;
+        left: 20px;
+        font-size: 2rem;
+    }
+    
+    .letter-header h2 {
+        font-size: 2rem;
+    }
+    
+    .letter-content {
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+    
+    .letter-content p {
+        text-indent: 1.5em;
+    }
+    
+    .letter-signature {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .container::before,
+    .container::after {
+        display: none;
+    }
+    
+    .calendar-grid {
+        padding: 10px;
+    }
+    
+    .day-card {
+        padding: 20px 12px;
+    }
+    
+    .day-card.special::after {
+        font-size: 1.2rem;
+        top: 8px;
+        right: 10px;
+    }
+    
+    .day-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .image-container {
+        max-width: 95%;
+    }
+    
+    .shayari {
+        font-size: 1rem;
+        padding: 20px 15px;
+    }
+    
+    .back-button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .bouquet-title {
+        font-size: 1.7rem;
+    }
+    
+    .letter-header h2 {
+        font-size: 1.7rem;
+    }
+    
+    .letter-content {
+        font-size: 1rem;
+    }
+    
+    .letter-signature {
+        font-size: 1.1rem;
+    }
+}
