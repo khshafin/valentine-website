@@ -18,14 +18,15 @@ const DAYS_DATA = [
 
 // Check if a day is unlocked
 function isDayUnlocked(dayData) {
-    const now = new Date();
-    const targetDate = new Date(dayData.year, dayData.month - 1, dayData.day);
+    // TESTING MODE - All days unlocked
+    return true;
     
-    // Set both dates to start of day for fair comparison
-    now.setHours(0, 0, 0, 0);
-    targetDate.setHours(0, 0, 0, 0);
-    
-    return now >= targetDate;
+    // Uncomment below for date-based locking:
+    // const now = new Date();
+    // const targetDate = new Date(dayData.year, dayData.month - 1, dayData.day);
+    // now.setHours(0, 0, 0, 0);
+    // targetDate.setHours(0, 0, 0, 0);
+    // return now >= targetDate;
 }
 
 // Format date for display
