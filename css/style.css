@@ -798,21 +798,6 @@ body .day-page .day-content > .image-container:first-of-type {
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     font-family: 'Georgia', serif;
     opacity: 0.12; /* very low visibility by default */
-}
-
-/* --- Madlib styles --- */
-.madlib-area { max-width: 720px; margin: 0 auto; }
-.madlib-form { display: grid; gap: 8px; text-align: left; margin-top: 8px; }
-.madlib-form label { font-size: 0.95rem; color: var(--brown); }
-.madlib-form input { padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(139,115,85,0.15); font-family: Georgia, serif; }
-.madlib-card { width: 100%; max-width: 740px; margin: 0 auto; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
-
-/* Make print friendly */
-@media print {
-    body { background: #fff; }
-    .back-button, .special-button, .madlib-form, .subtitle { display: none !important; }
-    .madlib-card svg { width: 100% !important; height: auto !important; }
-}
     transform: scale(0.95);
     transition: opacity 320ms ease, transform 320ms ease;
     z-index: 30;
