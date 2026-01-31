@@ -84,6 +84,11 @@
             qs('#fsTitle').textContent = `Day ${dayParam} — One Sentence For Us`;
             backToDay.href = `day${dayParam}.html`;
             backToDay.textContent = `Back to Day ${dayParam}`;
+            const bottomBack = qs('#fsBottomBack');
+            if(bottomBack){
+                bottomBack.href = `day${dayParam}.html`;
+                bottomBack.textContent = `Back to Day ${dayParam}`;
+            }
         } else {
             backToDay.href = 'bouquet.html';
             backToDay.textContent = 'Back';
