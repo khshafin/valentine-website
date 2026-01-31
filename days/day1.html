@@ -36,10 +36,19 @@
     </audio>
     
     <script>
+        const MUSIC_KEY = 'valentine_music_state';
+        
         // Auto-play background music with iOS Safari support
         window.addEventListener('DOMContentLoaded', () => {
             const audio = document.getElementById('bgMusic');
             audio.volume = 0.3;
+            
+            // Restore audio state if exists
+            const savedState = sessionStorage.getItem(MUSIC_KEY);
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                audio.currentTime = state.time || 0;
+            }
             
             // iOS Safari: Try to play immediately
             const playPromise = audio.play();
@@ -55,6 +64,38 @@
                     }, { once: true });
                     document.body.appendChild(tapOverlay);
                 });
+            }
+        });
+        
+        // Save audio state before leaving the page
+        window.addEventListener('beforeunload', () => {
+            const audio = document.getElementById('bgMusic');
+            if (audio && !audio.paused) {
+                sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                    time: audio.currentTime,
+                    playing: true
+                }));
+            }
+        });
+        
+        // Save or clear state when clicking links
+        document.addEventListener('click', (e) => {
+            const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                // Clear music state when going back to calendar
+                if (href && href.includes('index.html')) {
+                    sessionStorage.removeItem(MUSIC_KEY);
+                } else {
+                    // Save state for navigation within day pages
+                    const audio = document.getElementById('bgMusic');
+                    if (audio && !audio.paused) {
+                        sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                            time: audio.currentTime,
+                            playing: true
+                        }));
+                    }
+                }
             }
         });
     </script>

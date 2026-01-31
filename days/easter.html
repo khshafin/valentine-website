@@ -74,15 +74,21 @@
             }
         });
 
-        // Also save state when clicking links
+        // Save or clear state when clicking links
         document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A' || e.target.closest('a')) {
-                const audio = document.getElementById('bgMusic');
-                if (audio && !audio.paused) {
-                    sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
-                        time: audio.currentTime,
-                        playing: true
-                    }));
+            const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href.includes('index.html')) {
+                    sessionStorage.removeItem(MUSIC_KEY);
+                } else {
+                    const audio = document.getElementById('bgMusic');
+                    if (audio && !audio.paused) {
+                        sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                            time: audio.currentTime,
+                            playing: true
+                        }));
+                    }
                 }
             }
         });

@@ -36,9 +36,18 @@
     </audio>
     
     <script>
+        const MUSIC_KEY = 'valentine_music_state';
+        
         window.addEventListener('DOMContentLoaded', () => {
             const audio = document.getElementById('bgMusic');
             audio.volume = 0.3;
+            
+            // Restore audio state if exists
+            const savedState = sessionStorage.getItem(MUSIC_KEY);
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                audio.currentTime = state.time || 0;
+            }
             
             const playPromise = audio.play();
             
@@ -52,6 +61,35 @@
                     }, { once: true });
                     document.body.appendChild(tapOverlay);
                 });
+            }
+        });
+        
+        // Save audio state before leaving
+        window.addEventListener('beforeunload', () => {
+            const audio = document.getElementById('bgMusic');
+            if (audio && !audio.paused) {
+                sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                    time: audio.currentTime,
+                    playing: true
+                }));
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href.includes('index.html')) {
+                    sessionStorage.removeItem(MUSIC_KEY);
+                } else {
+                    const audio = document.getElementById('bgMusic');
+                    if (audio && !audio.paused) {
+                        sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                            time: audio.currentTime,
+                            playing: true
+                        }));
+                    }
+                }
             }
         });
     </script>

@@ -58,6 +58,8 @@ function createCalendar() {
 
         if (isUnlocked) {
             card.onclick = () => {
+                // Clear music state so music starts fresh when entering a day page
+                sessionStorage.removeItem('valentine_music_state');
                 window.location.href = `days/day${dayNumber}.html`;
             };
         }
@@ -65,7 +67,7 @@ function createCalendar() {
         card.innerHTML = `
             <div class="day-number">${dayNumber}</div>
             <div class="day-label">${formatDate(dayData)}</div>
-            ${!isUnlocked ? '<div class="lock-icon">🔒</div>' : ''}
+            ${!isUnlocked ? '<div class="lock-icon">🔒</div><div class="locked-message">Check back later</div>' : ''}
         `;
 
         grid.appendChild(card);

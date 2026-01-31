@@ -10,9 +10,12 @@
     <!-- Entrance Overlay -->
     <div id="entranceOverlay" class="entrance-overlay">
         <div class="entrance-content">
-            <h2>14 Days of Love</h2>
+            <h2>Will You Be My Valentine?</h2>
             <p>A Journey to Valentine's Day</p>
-            <button id="enterButton" class="enter-button">♥ Enter ♥</button>
+            <div class="valentine-buttons">
+                <button id="yesButton" class="yes-button">Yes ♥</button>
+                <button id="noButton" class="no-button">No</button>
+            </div>
         </div>
     </div>
     
@@ -61,7 +64,10 @@
                 });
             }
             
-            enterButton.addEventListener('click', () => {
+            const yesButton = document.getElementById('yesButton');
+            const noButton = document.getElementById('noButton');
+            
+            yesButton.addEventListener('click', () => {
                 // Mark as entered
                 sessionStorage.setItem('valentine_entered', 'true');
                 
@@ -72,6 +78,14 @@
                 overlay.style.opacity = '0';
                 setTimeout(() => {
                     overlay.style.display = 'none';
+                }, 500);
+            });
+            
+            noButton.addEventListener('click', () => {
+                // Shake the no button
+                noButton.classList.add('shake');
+                setTimeout(() => {
+                    noButton.classList.remove('shake');
                 }, 500);
             });
         });

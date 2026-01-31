@@ -152,6 +152,72 @@ body > * {
     box-shadow: 0 8px 20px rgba(220, 60, 34, 0.35);
 }
 
+/* Valentine buttons */
+.valentine-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.yes-button, .no-button {
+    padding: 12px 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.yes-button {
+    background: var(--red);
+    color: var(--paper);
+    box-shadow: 0 5px 15px rgba(220, 60, 34, 0.25);
+}
+
+.yes-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+}
+
+.yes-button:hover::before {
+    left: 100%;
+}
+
+.yes-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(220, 60, 34, 0.35);
+}
+
+.no-button {
+    background: var(--olive);
+    color: var(--paper);
+    box-shadow: 0 5px 15px rgba(139, 115, 85, 0.25);
+}
+
+.no-button:hover {
+    background: var(--brown);
+}
+
+/* Shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
 .container {
     max-width: 900px;
     width: 100%;
@@ -350,6 +416,14 @@ header .subtitle::after {
 .day-card.locked .day-label {
     color: var(--brown);
     opacity: 0.5;
+}
+
+.locked-message {
+    font-size: 0.75rem;
+    color: var(--brown);
+    opacity: 0.7;
+    margin-top: 5px;
+    font-style: italic;
 }
 
 .day-card.special {
