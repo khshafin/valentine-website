@@ -814,8 +814,12 @@ body .day-page .day-content > .image-container:first-of-type {
 .future-area { max-width: 720px; margin: 0 auto; }
 .future-form { display: grid; gap: 8px; text-align: left; margin-top: 8px; }
 .future-form label { font-size: 0.95rem; color: var(--brown); }
-.future-card { width: 100%; max-width: 920px; margin: 0 auto; background: #fff; padding: 18px; border-radius: 8px; box-shadow: 0 12px 36px rgba(0,0,0,0.10); overflow: visible; }
+.future-card { width: 100%; max-width: 920px; margin: 0 auto; background: #fff; padding: 18px; border-radius: 8px; box-shadow: 0 12px 36px rgba(0,0,0,0.10); overflow: visible; position: relative; z-index: 30; }
 .future-card svg { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+/* When a card is being shown, hide potential overlapping decorations */
+.fs-result-visible .day-content::after { display: none !important; }
+.fs-result-visible .heart-decoration { display: none !important; }
 
 @media print {
     body{background:#fff}

@@ -55,6 +55,13 @@
         container.innerHTML = svg;
         qs('#fsResult').style.display = 'block';
         qs('#fsForm').style.display = 'none';
+        // Hide form-level back to avoid duplicate Back buttons
+        const formBack = qs('#fsFormBack');
+        if(formBack) formBack.style.display = 'none';
+        // Add a marker class to hide page decorations that might overlap
+        document.body.classList.add('fs-result-visible');
+        // Ensure card is visible in viewport
+        container.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
 
     function svgToPngDownload(svgString, filename){
@@ -111,6 +118,9 @@
         editBtn && editBtn.addEventListener('click', function(){
             qs('#fsResult').style.display = 'none';
             qs('#fsForm').style.display = '';
+            // restore form back link and page decorations
+            const formBack = qs('#fsFormBack'); if(formBack) formBack.style.display = '';
+            document.body.classList.remove('fs-result-visible');
         });
 
         resetBtn && resetBtn.addEventListener('click', function(){ form.reset(); });
