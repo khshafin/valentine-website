@@ -157,7 +157,7 @@
         }
     </script>
     
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
         <source src="../songs/day14.mp3" type="audio/mpeg">
     </audio>
     
@@ -175,11 +175,19 @@
                 audio.currentTime = state.time || 0;
             }
             
-            audio.play().catch(() => {
-                document.body.addEventListener('click', () => {
-                    audio.play();
-                }, { once: true });
-            });
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    const tapOverlay = document.createElement('div');
+                    tapOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;cursor:pointer;';
+                    tapOverlay.addEventListener('click', () => {
+                        audio.play();
+                        tapOverlay.remove();
+                    }, { once: true });
+                    document.body.appendChild(tapOverlay);
+                });
+            }
         });
         
         // Save audio state before leaving the page

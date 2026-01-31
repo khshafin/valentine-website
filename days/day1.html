@@ -29,23 +29,31 @@
         </div>
     </div>
     
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
         <source src="../songs/day1.mp3" type="audio/mpeg">
     </audio>
     
     <script>
-        // Auto-play background music
+        // Auto-play background music with iOS Safari support
         window.addEventListener('DOMContentLoaded', () => {
             const audio = document.getElementById('bgMusic');
             audio.volume = 0.3;
             
-            // Try to play automatically
-            audio.play().catch(() => {
-                // If autoplay fails, play on first user interaction
-                document.body.addEventListener('click', () => {
-                    audio.play();
-                }, { once: true });
-            });
+            // iOS Safari: Try to play immediately
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // If autoplay fails, add invisible tap-to-start for iOS
+                    const tapOverlay = document.createElement('div');
+                    tapOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;cursor:pointer;';
+                    tapOverlay.addEventListener('click', () => {
+                        audio.play();
+                        tapOverlay.remove();
+                    }, { once: true });
+                    document.body.appendChild(tapOverlay);
+                });
+            }
         });
     </script>
 </body>
