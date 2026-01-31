@@ -846,6 +846,14 @@ body .day-page .day-content > .image-container:first-of-type {
     .future-card svg { width:100% !important; height:auto !important }
 }
 
+/* Dev toggle (local only) */
+.dev-toggle{
+    position:fixed; left:20px; bottom:24px; z-index:99999; background:var(--olive); color:var(--paper); border:none; padding:8px 12px; border-radius:20px; font-family:Georgia, serif; box-shadow:0 6px 18px rgba(0,0,0,0.18); cursor:pointer; opacity:0.95;
+}
+.dev-toggle.on{ background: linear-gradient(90deg,#66BB6A,#4CAF50); color:#fff; }
+.dev-toggle:focus{ outline:2px solid rgba(139,115,85,0.2); }
+
+
 /* Easter stage layout */
 .easter-stage {
     margin-top: 18px;
