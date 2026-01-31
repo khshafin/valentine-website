@@ -1,19 +1,19 @@
 // Calendar configuration
 const DAYS_DATA = [
-    { day: 1, month: 2, year: 2025 },
-    { day: 2, month: 2, year: 2025 },
-    { day: 3, month: 2, year: 2025 },
-    { day: 4, month: 2, year: 2025 },
-    { day: 5, month: 2, year: 2025 },
-    { day: 6, month: 2, year: 2025 },
-    { day: 7, month: 2, year: 2025 },
-    { day: 8, month: 2, year: 2025 },
-    { day: 9, month: 2, year: 2025 },
-    { day: 10, month: 2, year: 2025 },
-    { day: 11, month: 2, year: 2025 },
-    { day: 12, month: 2, year: 2025 },
-    { day: 13, month: 2, year: 2025 },
-    { day: 14, month: 2, year: 2025 }
+    { day: 1, month: 2, year: 2026 },
+    { day: 2, month: 2, year: 2026 },
+    { day: 3, month: 2, year: 2026 },
+    { day: 4, month: 2, year: 2026 },
+    { day: 5, month: 2, year: 2026 },
+    { day: 6, month: 2, year: 2026 },
+    { day: 7, month: 2, year: 2026 },
+    { day: 8, month: 2, year: 2026 },
+    { day: 9, month: 2, year: 2026 },
+    { day: 10, month: 2, year: 2026 },
+    { day: 11, month: 2, year: 2026 },
+    { day: 12, month: 2, year: 2026 },
+    { day: 13, month: 2, year: 2026 },
+    { day: 14, month: 2, year: 2026 }
 ];
 
 // Check if a day is unlocked
