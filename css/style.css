@@ -767,6 +767,211 @@ body .day-page .day-content > .image-container:first-of-type {
 }
 
 /* Add decorative line under date */
+/* --- Easter egg letter styles --- */
+.day-card .egg-letter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Georgia', serif;
+    font-size: 1.05rem;
+    background: var(--peach);
+    color: var(--red);
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    z-index: 3;
+    font-weight: 600;
+    animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+/* Day page letter badge (low opacity on page, full on unlock) */
+.egg-letter-day {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--peach);
+    color: var(--red);
+    border-radius: 18px;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    font-family: 'Georgia', serif;
+    opacity: 0.12; /* very low visibility by default */
+    transform: scale(0.95);
+    transition: opacity 320ms ease, transform 320ms ease;
+    z-index: 30;
+}
+
+.egg-letter-day.egg-visible {
+    /* Keep unlocked badges subtle — match Day 14 appearance */
+    opacity: 0.12;
+    transform: scale(1);
+    /* intentionally no heartbeat to remain subtle */
+}
+
+/* Easter stage layout */
+.easter-stage {
+    margin-top: 18px;
+    position: relative;
+    min-height: 300px;
+}
+
+/* Make cell numbers hidden initially so their pop-in is visible */
+.cell-number {
+    transition: opacity 260ms ease, transform 260ms ease;
+    opacity: 0;
+}
+
+/* Grid badges */
+.cell-badge {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%) scale(0.85);
+    background: var(--peach);
+    color: var(--red);
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'Georgia', serif;
+    opacity: 0;
+    transition: transform 400ms cubic-bezier(.2,.9,.2,1), opacity 300ms ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    pointer-events: none;
+}
+
+.cell-badge.fly-out {
+    opacity: 1;
+    transform: translate(-50%, -120%) scale(1);
+}
+
+.cell-badge.docked {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.cell-number {
+    transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.cell-number.pop-in {
+    animation: popIn 420ms ease;
+}
+
+.cell-number.hide-number {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    60% { transform: scale(1.06); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Flying letters */
+.fly-letter {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    background: var(--peach);
+    color: var(--red);
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.8s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Assemble area */
+.assemble-area {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.assembled-text {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    color: var(--olive);
+    font-weight: 700;
+    letter-spacing: 2px;
+    min-height: 54px;
+    margin-bottom: 12px;
+}
+
+/* End added styles */
+
+.easter-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.easter-cell {
+    background: rgba(255,255,255,0.9);
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgba(139,115,85,0.08);
+    position: relative;
+    overflow: visible;
+    min-height: 60px;
+}
+
+.easter-cell .cell-number {
+    font-size: 0.9rem;
+    color: var(--brown);
+    opacity: 0.6;
+    margin-bottom: 6px;
+}
+
+.easter-cell .cell-letter {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    color: var(--red);
+    font-weight: 700;
+}
+
+/* Flying letters */
+.fly-letter {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    background: var(--peach);
+    color: var(--red);
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.8s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Assemble area */
+.assemble-area {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.assembled-text {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    color: var(--olive);
+    font-weight: 700;
+    letter-spacing: 2px;
+    min-height: 54px;
+    margin-bottom: 12px;
+}
+
+/* End added styles */
 .day-header .subtitle::after {
     content: '';
     display: block;
@@ -1225,4 +1430,22 @@ body .day-page .day-content > .image-container:first-of-type {
     .letter-signature {
         font-size: 1.1rem;
     }
+}
+
+/* Extra easter styles */
+.easter-button {
+    display: block; /* center like other buttons */
+    width: fit-content;
+    margin: 18px auto 10px auto;
+    text-align: center;
+}
+
+/* Ensure day page badge uses the same low-opacity style and sits bottom-right of the day-content */
+.egg-letter-day,
+.day-header .egg-letter-day {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    opacity: 0.12;
+    z-index: 30;
 }

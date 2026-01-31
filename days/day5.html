@@ -25,7 +25,8 @@
                 Tum ho mera kal, tum ho mera aaj, tum ho meri har dua।
             </div>
             
-            <a href="../index.html" class="back-button">← Back to Calendar</a>
+<div class="egg-letter-day">কে</div>
+                <a href="../index.html" class="back-button">← Back to Calendar</a>
         </div>
     </div>
     
@@ -51,6 +52,12 @@
                     document.body.appendChild(tapOverlay);
                 });
             }
+        });
+    </script>
+    <script src="../js/egg-visibility.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            revealEggIfUnlocked(5, '.egg-letter-day');
         });
     </script>
 </body>

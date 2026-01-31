@@ -25,7 +25,8 @@
                 Har saans mein tumhe basaya hai apne hain maine।
             </div>
             
-            <a href="../index.html" class="back-button">← Back to Calendar</a>
+<div class="egg-letter-day">অ</div>
+                <a href="../index.html" class="back-button">← Back to Calendar</a>
         </div>
     </div>
     
@@ -51,6 +52,12 @@
                     document.body.appendChild(tapOverlay);
                 });
             }
+        });
+    </script>
+    <script src="../js/egg-visibility.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            revealEggIfUnlocked(11, '.egg-letter-day');
         });
     </script>
 </body>

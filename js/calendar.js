@@ -16,17 +16,20 @@ const DAYS_DATA = [
     { day: 14, month: 2, year: 2026 }
 ];
 
+// DEBUG: set to true to unlock all days for development/testing
+window.DEBUG_UNLOCK_ALL = true;
+
 // Check if a day is unlocked
 function isDayUnlocked(dayData) {
-    // TESTING MODE - All days unlocked
-    return true;
-    
-    // Uncomment below for date-based locking:
-    // const now = new Date();
-    // const targetDate = new Date(dayData.year, dayData.month - 1, dayData.day);
-    // now.setHours(0, 0, 0, 0);
-    // targetDate.setHours(0, 0, 0, 0);
-    // return now >= targetDate;
+    // Honor debug override
+    if (window.DEBUG_UNLOCK_ALL) return true;
+
+    // Date-based locking (actual behavior)
+    const now = new Date();
+    const targetDate = new Date(dayData.year, dayData.month - 1, dayData.day);
+    now.setHours(0, 0, 0, 0);
+    targetDate.setHours(0, 0, 0, 0);
+    return now >= targetDate;
 }
 
 // Format date for display

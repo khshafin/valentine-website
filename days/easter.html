@@ -3,56 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 14 - Valentine's Day</title>
+    <title>Secret Letter — Assemble</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="day-page">
         <div class="day-content">
             <div class="day-header">
-                <h2>Day 14</h2>
-                <p class="subtitle">February 14, 2026</p>
+                <h2>A Secret.</h2>
+                <p class="subtitle">Or Is It?</p>
             </div>
-            
-            <div class="image-container">
-                <img src="../images/day14.jpg" alt="Valentine's Day" onerror="this.src='https://via.placeholder.com/800x500/DC3C22/FBF5DE?text=Happy+Valentine%27s+Day'">
+
+            <div class="easter-stage">
+                <div class="easter-grid" id="easterGrid"></div>
+
+                <div class="assemble-area" id="assembleArea">
+                    <div class="assembled-text" id="assembledText" aria-live="polite"></div>
+                    <button id="replayButton" class="special-button">Replay</button>
+                </div>
             </div>
-            
-            <div class="shayari">
-                Aaj ka din hai khaas-o-khaas,<br>
-                Kyunki yeh hai ishq ka jashn-e-tehwar,<br>
-                Tumhare saath har lamha Valentine's sa hai,<br>
-                Tum ho meri zindagi ki raunak aur pyaar।<br><br>
-                
-                Tumhare liye hai yeh nazrana-e-khaas,<br>
-                Chaudah dinon ki yaadon ka haseen guldasta,<br>
-                Har rang mein sajaa hai mohabbat ka aalam,<br>
-                Tumhare liye hai mere dil ka har ek raasta।
-            </div>
-            
-            <a href="bouquet.html" class="special-button">This Is For You</a>
-            <div class="egg-letter-day">!</div>
-            <br>
-            <a href="../index.html" class="back-button">← Back to Calendar</a>
+
+            <a href="letter.html" class="back-button">← Back</a>
         </div>
     </div>
-    
+
+    <script src="../js/egg-visibility.js"></script>
+    <script src="../js/easter.js"></script>
+
     <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
         <source src="../songs/day14.mp3" type="audio/mpeg">
     </audio>
-    
+
     <script>
         const MUSIC_KEY = 'valentine_music_state';
-        
         window.addEventListener('DOMContentLoaded', () => {
             const audio = document.getElementById('bgMusic');
             audio.volume = 0.3;
 
-            // Always restart the track from the beginning when this page is accessed
-            audio.currentTime = 0;
+            // Restore saved state if exists
+            const saved = sessionStorage.getItem(MUSIC_KEY);
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
+                    if (state.time) audio.currentTime = state.time;
+                } catch (e) {}
+            }
 
             const playPromise = audio.play();
-
             if (playPromise !== undefined) {
                 playPromise.catch(() => {
                     const tapOverlay = document.createElement('div');
@@ -65,7 +62,7 @@
                 });
             }
         });
-        
+
         // Save audio state before leaving the page
         window.addEventListener('beforeunload', () => {
             const audio = document.getElementById('bgMusic');
@@ -76,7 +73,7 @@
                 }));
             }
         });
-        
+
         // Also save state when clicking links
         document.addEventListener('click', (e) => {
             if (e.target.tagName === 'A' || e.target.closest('a')) {
