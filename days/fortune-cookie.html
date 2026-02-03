@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Fortune Cookie For Us</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="day-page">
+    <div class="day-content">
+        <div class="day-header">
+            <h2 id="fcTitle">Fortune Cookie For Us</h2>
+            <a id="fcFormBack" class="back-button" href="#" style="margin-top:8px; display:inline-block;">Back</a>
+        </div>
+
+        <div class="future-area">
+            <div id="fcCookie" class="fortune-cookie-container">
+                <div class="cookie-closed" id="cookieClosed">
+                    <svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="75" rx="80" ry="60" fill="#F4C430" stroke="#D4A017" stroke-width="3"/>
+                        <path d="M 40 75 Q 100 120 160 75" fill="#E6B800" opacity="0.6"/>
+                        <ellipse cx="70" cy="60" rx="4" ry="3" fill="#8B6914" opacity="0.3"/>
+                        <ellipse cx="130" cy="65" rx="3" ry="4" fill="#8B6914" opacity="0.3"/>
+                        <ellipse cx="100" cy="50" rx="5" ry="4" fill="#8B6914" opacity="0.3"/>
+                    </svg>
+                    <p class="cookie-hint">Click to open your fortune!</p>
+                </div>
+            </div>
+
+            <div id="fcResult" style="display:none; margin-top:18px;">
+                <div class="fortune-card" id="fcCardContainer" aria-live="polite">
+                    <div class="fortune-paper">
+                        <p class="fortune-text" id="fortuneText"></p>
+                    </div>
+                </div>
+
+                <div style="margin-top:20px; text-align:center;">
+                    <button id="fcAnother" class="special-button">Another Fortune</button>
+                    <button id="fcDownload" class="special-button">Download Card</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <script src="../js/fortune-cookie.js"></script>
+    <script>
+        const MUSIC_KEY = 'valentine_music_state';
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('bgMusic');
+            const urlParams = new URLSearchParams(window.location.search);
+            const day = urlParams.get('day');
+            
+            if (day) {
+                audio.querySelector('source').src = `../songs/day${day}.mp3`;
+                audio.load();
+            }
+            
+            audio.volume = 0.3;
+            
+            const savedState = sessionStorage.getItem(MUSIC_KEY);
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                audio.currentTime = state.time || 0;
+            }
+            
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    const tapOverlay = document.createElement('div');
+                    tapOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;cursor:pointer;';
+                    tapOverlay.addEventListener('click', () => {
+                        audio.play();
+                        tapOverlay.remove();
+                    }, {once: true});
+                    document.body.appendChild(tapOverlay);
+                });
+            }
+        });
+        
+        window.addEventListener('beforeunload', () => {
+            const audio = document.getElementById('bgMusic');
+            if (audio && !audio.paused) {
+                sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                    time: audio.currentTime,
+                    playing: true
+                }));
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href.includes('index.html')) {
+                    sessionStorage.removeItem(MUSIC_KEY);
+                } else if (audio && !audio.paused) {
+                    sessionStorage.setItem(MUSIC_KEY, JSON.stringify({
+                        time: audio.currentTime,
+                        playing: true
+                    }));
+                }
+            }
+        });
+    </script>
+</body>
+</html>
