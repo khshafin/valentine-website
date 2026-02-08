@@ -1974,6 +1974,206 @@ body .day-page .day-content > .image-container:first-of-type {
     animation: wingFlap 0.6s ease-in-out infinite;
 }
 
+/* Third Flying Bird Animation */
+.flying-bird-3 {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    z-index: 6;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    animation: birdFly3 22s ease-in-out infinite;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes birdFly3 {
+    0% {
+        left: -10%;
+        top: 35%;
+        transform: rotate(-10deg) scaleX(1);
+    }
+    8% {
+        left: 10%;
+        top: 40%;
+        transform: rotate(5deg) scaleX(1);
+    }
+    16% {
+        left: 25%;
+        top: 32%;
+        transform: rotate(-5deg) scaleX(1);
+    }
+    24% {
+        left: 40%;
+        top: 38%;
+        transform: rotate(8deg) scaleX(1);
+    }
+    32% {
+        left: 55%;
+        top: 30%;
+        transform: rotate(-8deg) scaleX(1);
+    }
+    40% {
+        left: 70%;
+        top: 36%;
+        transform: rotate(5deg) scaleX(1);
+    }
+    48% {
+        left: 85%;
+        top: 32%;
+        transform: rotate(-5deg) scaleX(1);
+    }
+    50% {
+        left: 100%;
+        top: 35%;
+        transform: rotate(0deg) scaleX(1);
+    }
+    52% {
+        left: 100%;
+        top: 35%;
+        transform: rotate(0deg) scaleX(-1);
+    }
+    60% {
+        left: 85%;
+        top: 40%;
+        transform: rotate(8deg) scaleX(-1);
+    }
+    68% {
+        left: 70%;
+        top: 33%;
+        transform: rotate(-6deg) scaleX(-1);
+    }
+    76% {
+        left: 55%;
+        top: 38%;
+        transform: rotate(7deg) scaleX(-1);
+    }
+    84% {
+        left: 35%;
+        top: 31%;
+        transform: rotate(-7deg) scaleX(-1);
+    }
+    92% {
+        left: 15%;
+        top: 37%;
+        transform: rotate(5deg) scaleX(-1);
+    }
+    98% {
+        left: 0%;
+        top: 35%;
+        transform: rotate(0deg) scaleX(-1);
+    }
+    100% {
+        left: -10%;
+        top: 35%;
+        transform: rotate(-10deg) scaleX(1);
+    }
+}
+
+.flying-bird-3 svg {
+    animation: wingFlap 0.6s ease-in-out infinite;
+}
+
+/* Fourth Flying Bird Animation */
+.flying-bird-4 {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    z-index: 6;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    animation: birdFly4 19s ease-in-out infinite;
+    animation-delay: 4.5s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes birdFly4 {
+    0% {
+        right: -10%;
+        top: 45%;
+        transform: rotate(10deg) scaleX(-1);
+    }
+    8% {
+        right: 10%;
+        top: 50%;
+        transform: rotate(-5deg) scaleX(-1);
+    }
+    16% {
+        right: 25%;
+        top: 42%;
+        transform: rotate(5deg) scaleX(-1);
+    }
+    24% {
+        right: 40%;
+        top: 48%;
+        transform: rotate(-8deg) scaleX(-1);
+    }
+    32% {
+        right: 55%;
+        top: 40%;
+        transform: rotate(8deg) scaleX(-1);
+    }
+    40% {
+        right: 70%;
+        top: 46%;
+        transform: rotate(-5deg) scaleX(-1);
+    }
+    48% {
+        right: 85%;
+        top: 42%;
+        transform: rotate(5deg) scaleX(-1);
+    }
+    50% {
+        right: 100%;
+        top: 45%;
+        transform: rotate(0deg) scaleX(-1);
+    }
+    52% {
+        right: 100%;
+        top: 45%;
+        transform: rotate(0deg) scaleX(1);
+    }
+    60% {
+        right: 85%;
+        top: 50%;
+        transform: rotate(-8deg) scaleX(1);
+    }
+    68% {
+        right: 70%;
+        top: 43%;
+        transform: rotate(6deg) scaleX(1);
+    }
+    76% {
+        right: 55%;
+        top: 48%;
+        transform: rotate(-7deg) scaleX(1);
+    }
+    84% {
+        right: 35%;
+        top: 41%;
+        transform: rotate(7deg) scaleX(1);
+    }
+    92% {
+        right: 15%;
+        top: 47%;
+        transform: rotate(-5deg) scaleX(1);
+    }
+    98% {
+        right: 0%;
+        top: 45%;
+        transform: rotate(0deg) scaleX(1);
+    }
+    100% {
+        right: -10%;
+        top: 45%;
+        transform: rotate(10deg) scaleX(-1);
+    }
+}
+
+.flying-bird-4 svg {
+    animation: wingFlap 0.6s ease-in-out infinite;
+}
+
 /* Blooming Orchids Animation */
 .orchid {
     position: fixed;
@@ -2045,5 +2245,155 @@ body .day-page .day-content > .image-container:first-of-type {
     }
     100% {
         transform: scaleY(1);
+    }
+}
+
+/* Flying Bees Animation */
+.bee {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    z-index: 7;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+.bee-1 {
+    animation: beeFlower1 24s ease-in-out infinite;
+    animation-delay: 2s;
+    animation-fill-mode: backwards;
+}
+
+.bee-2 {
+    animation: beeFlower2 28s ease-in-out infinite;
+    animation-delay: 4s;
+    animation-fill-mode: backwards;
+}
+
+.bee-3 {
+    animation: beeFlower3 32s ease-in-out infinite;
+    animation-delay: 6s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes beeFlower1 {
+    0%, 100% {
+        left: 3%;
+        bottom: 110px;
+        transform: rotate(-5deg) scaleX(1);
+    }
+    14% {
+        left: 10%;
+        bottom: 100px;
+        transform: rotate(10deg) scaleX(1);
+    }
+    28% {
+        left: 24%;
+        bottom: 105px;
+        transform: rotate(-8deg) scaleX(1);
+    }
+    42% {
+        left: 38%;
+        bottom: 110px;
+        transform: rotate(5deg) scaleX(1);
+    }
+    56% {
+        left: 52%;
+        bottom: 110px;
+        transform: rotate(-10deg) scaleX(1);
+    }
+    70% {
+        left: 66%;
+        bottom: 115px;
+        transform: rotate(8deg) scaleX(1);
+    }
+    84% {
+        left: 80%;
+        bottom: 112px;
+        transform: rotate(-5deg) scaleX(1);
+    }
+}
+
+@keyframes beeFlower2 {
+    0%, 100% {
+        right: 6%;
+        bottom: 118px;
+        transform: rotate(5deg) scaleX(-1);
+    }
+    14% {
+        right: 13%;
+        bottom: 108px;
+        transform: rotate(-10deg) scaleX(-1);
+    }
+    28% {
+        right: 27%;
+        bottom: 103px;
+        transform: rotate(8deg) scaleX(-1);
+    }
+    42% {
+        right: 41%;
+        bottom: 112px;
+        transform: rotate(-5deg) scaleX(-1);
+    }
+    56% {
+        right: 55%;
+        bottom: 105px;
+        transform: rotate(10deg) scaleX(-1);
+    }
+    70% {
+        right: 69%;
+        bottom: 115px;
+        transform: rotate(-8deg) scaleX(-1);
+    }
+    84% {
+        right: 83%;
+        bottom: 100px;
+        transform: rotate(5deg) scaleX(-1);
+    }
+}
+
+@keyframes beeFlower3 {
+    0%, 100% {
+        left: 17%;
+        bottom: 120px;
+        transform: rotate(0deg) scaleX(1);
+    }
+    16% {
+        left: 31%;
+        bottom: 115px;
+        transform: rotate(12deg) scaleX(1);
+    }
+    32% {
+        left: 45%;
+        bottom: 100px;
+        transform: rotate(-10deg) scaleX(1);
+    }
+    48% {
+        left: 59%;
+        bottom: 105px;
+        transform: rotate(8deg) scaleX(1);
+    }
+    64% {
+        left: 73%;
+        bottom: 108px;
+        transform: rotate(-6deg) scaleX(1);
+    }
+    80% {
+        left: 87%;
+        bottom: 103px;
+        transform: rotate(10deg) scaleX(1);
+    }
+}
+
+.bee svg {
+    animation: wingBuzz 0.1s linear infinite;
+}
+
+@keyframes wingBuzz {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0.7);
     }
 }
